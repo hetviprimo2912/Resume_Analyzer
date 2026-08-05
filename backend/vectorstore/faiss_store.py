@@ -1,6 +1,11 @@
 import faiss
+import pickle
 import numpy as np
+
+from pathlib import Path
+
 from embeddings.service import embed_text
+
 
 class FAISSStore:
     """
@@ -60,13 +65,73 @@ class FAISSStore:
 
         results = []
 
-        for index in indices[0]:
+        for distance, index in zip(
+            distances[0],
+            indices[0]
+        ):
 
             if index == -1:
                 continue
 
             results.append(
-                self.metadata[index]
+                {
+                    "distance": float(distance),
+                    "chunk": self.metadata[index]
+                }
             )
 
         return results
+    
+    def save(self, directory: str):
+        """
+        Save the FAISS index and metadata.
+        """
+
+        directory = Path(directory)
+
+        directory.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        faiss.write_index(
+            self.index,
+            str(directory / "index.faiss")
+        )
+
+        with open(
+            directory / "metadata.pkl",
+            "wb"
+        ) as file:
+
+            pickle.dump(
+                self.metadata,
+                file
+            )
+            
+    @classmethod
+    def load(cls, directory: str):
+        """
+        Load a FAISS index and its metadata.
+        """
+
+        directory = Path(directory)
+
+        index = faiss.read_index(
+            str(directory / "index.faiss")
+        )
+
+        with open(
+            directory / "metadata.pkl",
+            "rb"
+        ) as file:
+
+            metadata = pickle.load(file)
+
+        store = cls(index.d)
+
+        store.index = index
+
+        store.metadata = metadata
+
+        return store

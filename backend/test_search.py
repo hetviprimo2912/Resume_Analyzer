@@ -66,17 +66,23 @@ def main():
 
     for rank, result in enumerate(results, start=1):
 
+        chunk = result["chunk"]
+
+        distance = result["distance"]
+
         print("=" * 60)
 
         print(f"Rank : {rank}")
 
-        print(f"Section : {result.section}")
+        print(f"Distance : {distance:.4f}")
 
-        print(f"Subsection : {result.subsection}")
+        print(f"Section : {chunk.section}")
+
+        print(f"Subsection : {chunk.subsection}")
 
         print()
 
-        print(result.content)
+        print(chunk.content)
 
         print()
 
