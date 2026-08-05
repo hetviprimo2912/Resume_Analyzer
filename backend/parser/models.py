@@ -38,11 +38,17 @@ class ResumeBlock:
 @dataclass
 class ResumeChunk:
     """
-    Represents one chunk that will later be embedded.
+    Represents one semantic chunk that will be embedded.
     """
 
     chunk_id: int
+
     page: int
-    block_title: str
+
+    section: str
+
+    subsection: str | None
+
     content: str
+
     character_count: int
