@@ -52,3 +52,23 @@ class ResumeChunk:
     content: str
 
     character_count: int
+    
+@dataclass
+class ResumeEmbedding:
+    """
+    Represents one embedded resume chunk.
+    """
+
+    chunk_id: int
+
+    page: int
+
+    section: str
+
+    subsection: str | None
+
+    content: str
+
+    character_count: int
+
+    embedding: list[float]
