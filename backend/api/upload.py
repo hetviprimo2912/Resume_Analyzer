@@ -39,7 +39,7 @@ async def upload_resume(
     resume_id = index_resume(
         str(file_path)
     )
-
+    print("NEW RESUME ID:", resume_id)
     return {
         "success": True,
         "resume_id": resume_id,

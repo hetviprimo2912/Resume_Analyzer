@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
-from services.resume_search import search_resume
+from llm.service import generate_resume_answer
 from pydantic import BaseModel
 
 router = APIRouter(
@@ -26,36 +26,45 @@ def analyze_resume(
 
     try:
 
-        results = search_resume(
+        result = generate_resume_answer(
 
             resume_id=request.resume_id,
 
-            query=request.query,
+            question=request.query,
 
             top_k=request.top_k
         )
 
         return {
+
             "success": True,
-            "matches": [
+
+            "answer": result["answer"],
+
+            "confidence": result["confidence"],
+
+            "sources": [
 
                 {
 
-                    "distance": result["distance"],
+                    "section": item["chunk"].section,
 
-                    "section": result["chunk"].section,
+                    "subsection": item["chunk"].subsection,
 
-                    "subsection": result["chunk"].subsection,
+                    "page": item["chunk"].page,
 
-                    "content": result["chunk"].content,
-
-                    "page": result["chunk"].page
+                    "preview": (
+                        item["chunk"].content[:180] + "..."
+                        if len(item["chunk"].content) > 180
+                        else item["chunk"].content
+                    )
 
                 }
 
-                for result in results
+                for item in result["matches"]
 
             ]
+
         }
 
     except FileNotFoundError as e:

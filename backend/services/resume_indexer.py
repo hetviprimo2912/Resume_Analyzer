@@ -59,14 +59,22 @@ def index_resume(pdf_path: str) -> str:
     chunks = create_chunks(
         blocks
     )
+    print("\n========== CHUNKS ==========")
+    print("Total chunks:", len(chunks))
 
+    for c in chunks:
+        print("--------------------------------")
+        print("Section:", c.section)
+        print("Subsection:", c.subsection)
+        print("Content:", c.content[:150])
     # ----------------------------
     # Create Embeddings
     # ----------------------------
     embedded_chunks = embed_chunks(
         chunks
     )
-
+    print("\n========== EMBEDDINGS ==========")
+    print("Embedded chunks:", len(embedded_chunks))
     # ----------------------------
     # Build FAISS Store
     # ----------------------------
@@ -75,7 +83,9 @@ def index_resume(pdf_path: str) -> str:
     store.add_embeddings(
         embedded_chunks
     )
-
+    print("\n========== FAISS ==========")
+    print("Metadata:", len(store.metadata))
+    print("Vectors:", store.index.ntotal)
     # ----------------------------
     # Save Index
     # ----------------------------
