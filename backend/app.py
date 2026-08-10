@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from api.upload import router as upload_router
 from api.analyze import router as analyze_router
+from api.job_description import router as job_description_router
+
 
 app = FastAPI(
     title="AI Resume Analyzer API",
@@ -24,6 +26,7 @@ app.add_middleware(
 
 app.include_router(upload_router)
 app.include_router(analyze_router)
+app.include_router(job_description_router)
 
 
 @app.get("/")

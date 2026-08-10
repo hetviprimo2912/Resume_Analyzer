@@ -13,10 +13,13 @@ function UploadScreen({ onUploadSuccess }) {
         <h1>AI Resume Analyzer</h1>
 
         <p>
-          Upload your resume and start chatting with your AI assistant.
+          Upload your resume and get intelligent insights,
+          personalized feedback, and job-match analysis.
         </p>
 
-        <UploadResume onUploadSuccess={onUploadSuccess} />
+        <UploadResume
+          onUploadSuccess={onUploadSuccess}
+        />
 
       </div>
     </div>

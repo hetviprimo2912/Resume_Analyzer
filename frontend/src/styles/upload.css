@@ -1,112 +1,142 @@
-.upload-page{
+.upload-page {
+  width: 100%;
+  min-height: 100vh;
 
-    width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+  padding: 24px;
 }
 
-.upload-card{
+.upload-card {
+  width: min(520px, 100%);
 
-    width:600px;
+  padding: 48px 44px;
 
-    background:#111827;
+  text-align: center;
 
-    border:1px solid #1E293B;
+  background: #ffffff;
 
-    border-radius:24px;
+  border: 1px solid #e5e7eb;
 
-    padding:60px;
+  border-radius: 24px;
 
-    text-align:center;
-
-    box-shadow:
-    0px 25px 70px rgba(0,0,0,.35);
-
+  box-shadow:
+    0 25px 60px rgba(15, 23, 42, 0.08),
+    0 5px 15px rgba(15, 23, 42, 0.04);
 }
 
-.logo{
+.logo {
+  width: 70px;
+  height: 70px;
 
-    width:90px;
+  margin: 0 auto 22px;
 
-    height:90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    margin:auto;
+  border-radius: 18px;
 
-    border-radius:50%;
+  background: #eff6ff;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#2563EB;
-
-    font-size:40px;
-
-    margin-bottom:25px;
+  font-size: 32px;
 }
 
-.upload-card h1{
+.upload-card h1 {
+  margin: 0 0 10px;
 
-    font-size:40px;
+  color: #111827;
 
-    margin-bottom:12px;
+  font-size: 32px;
+  font-weight: 750;
 
-    color:white;
+  letter-spacing: -0.8px;
 }
 
-.upload-card p{
+.upload-card p {
+  margin: 0 auto 30px;
 
-    color:#94A3B8;
+  max-width: 390px;
 
-    line-height:28px;
+  color: #7b8494;
 
-    font-size:18px;
+  font-size: 14px;
 
-    margin-bottom:35px;
+  line-height: 1.7;
 }
 
-input[type=file]{
+input[type="file"] {
+  width: 100%;
 
-    color:#CBD5E1;
+  padding: 13px;
 
-    margin-bottom:20px;
+  margin-bottom: 18px;
+
+  color: #64748b;
+
+  background: #f8fafc;
+
+  border: 1px dashed #cbd5e1;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+
+  cursor: pointer;
 }
 
-.upload-btn{
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
 
-    width:220px;
+  padding: 8px 13px;
 
-    height:52px;
+  border: none;
 
-    border:none;
+  border-radius: 8px;
 
-    border-radius:12px;
+  background: #eff6ff;
 
-    background:#2563EB;
+  color: #2563eb;
 
-    color:white;
+  font-size: 11px;
+  font-weight: 600;
 
-    font-size:17px;
-
-    cursor:pointer;
-
-    transition:.3s;
+  cursor: pointer;
 }
 
-.upload-btn:hover{
+.upload-btn {
+  width: 100%;
 
-    background:#1D4ED8;
+  height: 48px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
 }
 
-.upload-btn:disabled{
+.upload-btn:hover:not(:disabled) {
+  background: #1d4ed8;
 
-    opacity:.7;
+  transform: translateY(-1px);
 
-    cursor:not-allowed;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
 }
